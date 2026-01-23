@@ -4,7 +4,7 @@
     "id": "wgkC8cfxORfo2dU0",
     "name": "Lakera",
     "data": {
-        "token": "CHANGE_ME"
+        "token": "671fb9a80eb45303458da3eee921c1e4f284cc5777a5e33c152038c425e0fbf4"
     },
     "type": "httpBearerAuth",
     "isManaged": false
