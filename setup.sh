@@ -76,11 +76,11 @@ if [ ! -f "$ENV_FILE" ]; then
         # Use sed to replace placeholders or keys
         # We assume the keys exist in .env-example
         
-        sed -i "s|^POSTGRES_PASSWORD=.*|POSTGRES_PASSWORD=${POSTGRES_PASSWORD}|" "$ENV_FILE"
-        sed -i "s|^N8N_ENCRYPTION_KEY=.*|N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}|" "$ENV_FILE"
-        sed -i "s|^N8N_USER_MANAGEMENT_JWT_SECRET=.*|N8N_USER_MANAGEMENT_JWT_SECRET=${N8N_JWT_SECRET}|" "$ENV_FILE"
-        sed -i "s|^N8N_ADMIN_PASSWORD=.*|N8N_ADMIN_PASSWORD=${N8N_ADMIN_PASSWORD}|" "$ENV_FILE"
-        sed -i "s|^N8N_BASIC_AUTH_PASSWORD=.*|N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}|" "$ENV_FILE"
+        sed -i '' "s|^POSTGRES_PASSWORD=.*|POSTGRES_PASSWORD=${POSTGRES_PASSWORD}|" "$ENV_FILE"
+        sed -i '' "s|^N8N_ENCRYPTION_KEY=.*|N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}|" "$ENV_FILE"
+        sed -i '' "s|^N8N_USER_MANAGEMENT_JWT_SECRET=.*|N8N_USER_MANAGEMENT_JWT_SECRET=${N8N_JWT_SECRET}|" "$ENV_FILE"
+        sed -i '' "s|^N8N_ADMIN_PASSWORD=.*|N8N_ADMIN_PASSWORD=${N8N_ADMIN_PASSWORD}|" "$ENV_FILE"
+        sed -i '' "s|^N8N_BASIC_AUTH_PASSWORD=.*|N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}|" "$ENV_FILE"
         
         echo -e "${GREEN}.env file updated with secure passwords.${NC}"
         echo -e "${YELLOW}IMPORTANT: The generated passwords are in .env. Please review them.${NC}"
@@ -119,14 +119,14 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     read -p "Enter Management Host IP (e.g. 1.2.3.4): " MGMT_HOST
     if [ ! -z "$MGMT_HOST" ]; then
-        sed -i "s|^MANAGEMENT_HOST=.*|MANAGEMENT_HOST=$MGMT_HOST|" "$ENV_FILE"
+        sed -i '' "s|^MANAGEMENT_HOST=.*|MANAGEMENT_HOST=$MGMT_HOST|" "$ENV_FILE"
     fi
     
     read -p "Enter SMS API Key: " SMS_KEY
     if [ ! -z "$SMS_KEY" ]; then
         # Escape special chars for sed
         ESCAPED_KEY=$(printf '%s\n' "$SMS_KEY" | sed -e 's/[\/&]/\\&/g')
-        sed -i "s|^SMS_API_KEY=.*|SMS_API_KEY=$ESCAPED_KEY|" "$ENV_FILE"
+        sed -i '' "s|^SMS_API_KEY=.*|SMS_API_KEY=$ESCAPED_KEY|" "$ENV_FILE"
     fi
     
     echo -e "${GREEN}API keys updated.${NC}"
